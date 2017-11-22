@@ -1,0 +1,67 @@
+html, body, div, h3,p,ul,li,img{
+	margin: 0;
+	padding: 0;
+}
+article, aside, figure, footer, header, hgroup,
+menu, nav, section { display: block; }
+body{
+	/*background-color: #969fab;*/
+	font-family: "Trebuchet MS",Arial,Helvetica,sans-serif;
+}
+/*.container{
+	width: 700px;
+	margin: 30px auto 0;
+}*/
+header{
+	background: 42517f;
+	/*border-bottom: 1px dashed #000;*/
+}
+header h3{
+	color: #992c2c;
+	text-align: center;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	word-spacing: 1px;
+	text-shadow: 0.5px 0.5px 0.5px #db6262; 
+}
+#content{
+<<<<<<< HEAD
+	background: #DCCECE;
+	background: linear-gradient(to top,#848c9c 0%,#687080 50%,#EAE3E3 100%);
+	background: -webkit-linear-gradient(bottom,#848c9c 0%,#EAE3E3 50%,#a7b1c5 100%);
+=======
+	background: #eee;
+	background: linear-gradient(to top,#848c9c 0%,#687080 50%,#a7b1c5 100%);
+	background: -webkit-linear-gradient(bottom,#848c9c 0%,#687080 50%,#a7b1c5 100%);
+	background: -webkit-linear-gradient(left,#eee 0%,#b2b2b2);
+>>>>>>> d9a8d776357a837de52a1693e5a469ff066286bd
+	padding-top: 30px;
+	padding-bottom: 30px;
+	overflow: hidden;
+	width: 95%;
+	transition: all 0.3s ease;
+}
+.gallery{
+	width: 80%;
+	margin: auto;
+}
+.gallery ul{
+	list-style: none;
+}
+.gallery li{
+	float: left;
+	margin: 10px;
+
+}
+.gallery img{
+	display: block;
+	padding: 5px;
+	background: #fff;
+	/*border:0.5px solid #000;*/
+	border-radius: 5px;
+	box-shadow: 1px 1px 2px #000;
+}
+.gallery img:hover{
+	border:1px solid #fff;
+	transform: scale(1.1);
+}

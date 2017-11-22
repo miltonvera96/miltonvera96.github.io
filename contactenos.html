@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, user-scalable:no, initial-scale=1.0, minimun-scale=1.0">
+	<title>Nobody Peluqueria</title>
+	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/extra.css">
+	<link rel="stylesheet" href="icomoon/style.css">
+	<link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet"> 
+	<link rel="icon" type="image/png" href="assets/logo.png"/> 
+
+</head>
+<body>
+		<div class="row" id="top">
+			<div class="col-md-3" >
+				<div class="col-md-10">
+					<div class="col-md-9" id="frase">La mejor frase para tu negocio</div>
+					<div class="col-md-3">
+						<img class="img-" src="assets/logo.png" height="100" width="100"  alt=""/>
+					</div>
+				</div>
+			</div>
+			
+			<div class="col-md-9">
+				<div id="menu">
+				    <nav class="navbar navbar-default ">
+				      <div class="container">
+				        <div class="navbar-header">
+				          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+				            <span class="sr-only">Toggle navigation</span>
+				            <span class="icon-bar"></span>
+				            <span class="icon-bar"></span>
+				            <span class="icon-bar"></span>
+				          </button>
+				          <a class="navbar-brand" href="index.html"><span class="icon-home"></span>NobodyPeluquería</a>
+				        </div>
+				        <div id="navbar" class="navbar-collapse collapse">
+				          <ul class="nav navbar-nav">
+							<li><a href="promociones.html"><span class="icon-coin-dollar"></span>Promociones</a></li>
+							<li><a href="nosotros.html"><span class="icon-man-woman"></span>Nosotros</a></li>
+							<li><a href="contactenos.html"><span class="icon-phone"></span>Contáctenos</a></li>
+				            <li class="dropdown">
+				              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="icon-briefcase"></span>Servicios <span class="caret"></span></a>
+				              <ul class="dropdown-menu">
+				              	<li><a href="servicios.html"> Peluquería</a></li>
+				                <li><a href="masajes.html"> Masajes</a></li>
+								<li><a href="faciales.html"> Faciales</a></li>
+								<li><a href="manicure.html"> Manicure</a></li>
+								<li><a href="pedicure.html"> Pedicure</a></li>
+								<li><a href="paraHombres.html"> Para Hombres</a></li>
+								<li><a href="galeria.html"> Galería</a></li>
+				                <!-- <li role="separator" class="divider"></li>
+				                <li class="dropdown-header">Nav header</li>
+				                <li><a href="#">Separated link</a></li>
+				                <li><a href="#">One more separated link</a></li> -->
+				              </ul>
+				            </li>
+				          </ul>
+				          <!-- <ul class="nav navbar-nav navbar-right">
+				            <li><a href="">Log in</a></li>
+				            <li><a href="">Sign Up</a></li>
+				          </ul> -->
+				        </div><!--/.nav-collapse -->
+				      </div>
+				    </nav>
+				</div>
+			</div>
+		</div>
+
+
+<br/>
+
+	 <div class="jumbotron">
+        <div class="container">
+            	<h2>Ubicación</h2>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d3986.962745415504!2d-79.90170418332328!3d-2.1678725996049497!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses!2sec!4v1510419409657" width="95%" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
+            	<strong>Contactenos</strong><br><strong>Oficina:</strong> (04) 2338579
+        </div>
+    </div>
+
+	<section class="formConct">
+    	<div class="container">
+        	
+        	<div class="container">
+            	<form role="form" id="Formulario" action="#" method="POST" style="width: 90%">
+                	<div class="form-group">
+                    	<label class="control-label" for="Nombre">Nombres</label>
+                    	<input type="text" class="form-control" id="Nombre" name="Nombre" placeholder="Introduzca su nombre" required autofocus />
+                	</div>
+                	<div class="form-group">
+                    	<label class="control-label" for="Motivo">Motivo de Contacto</label>
+                    	<select name="Motivo" class="form-control">
+                        	<option value="Reservar">Reservar</option>
+                        	<option value="Realizar Pedido">Realizar Pedido</option>
+                        	<option value="Informar un problema">Informar un problema</option>
+                    	</select>
+                	</div>
+                	<div class="form-group">
+                    	<label class="control-label" for="">Nº de Factura(Opcional)</label>
+                    	<input type="text" class="form-control" id="Factura" name="Factura" placeholder="Introduzca su número de factura" required />
+               		 </div>
+                	<div class="form-group">
+                    	<label class="control-label" for="Correo">Dirección de Correo Electrónico</label>
+                    	<input type="email" class="form-control" id="Correo" name="Correo" placeholder="Introduzca su correo electrónico" required />
+                	</div>
+                	<div class="form-group">
+                    	<label class="control-label" for="Mensaje">Mensaje</label>
+                    	<textarea rows="5" cols="30" class="form-control" id="Mensaje" name="Mensaje" placeholder="Introduzca su mensaje" required ></textarea>
+                	</div>
+                	<div class="form-group">
+                    	<input type="submit" class="btn btn-primary" value="Enviar">
+                    	<input type="reset" class="btn btn-default" value="Limpiar">
+                	</div>
+                	<div id="respuesta" style="display: none;"></div>
+            	</form>
+        	</div>
+    	</div>
+	</section>
+<br/>
+
+<div class="footer">
+
+	<div class="">
+		<div class="col-md-12">
+			<ul>
+				<li><h2>Nobody Peluqueria</h2></li>
+				</ul>
+		</div>
+			<div class="col-md-12">
+				<ul>
+					<li><h3>Redes Sociales</h3></li>
+					<li>
+						<a href="https://facebook.com"><img class="redes" alt="" src="assets/facebook.png"></a>
+						<a href="https://twitter.com"><img class="redes" alt="" src="assets/twitter.png"></a>
+						<a href="https://instagram.com"><img class="redes" alt="" src="assets/instagram.png"></a>
+					</li>
+				</ul>
+			</div>
+	</div>
+
+	<br>
+
+	<div class="row">
+		<div class="col-md-4">
+			<ul>
+				<li><img class="iconFooter" src="assets/phone.png" alt="">
+				<li>(04) 2338579</li>
+				<li>(593) 9082479989</li>
+			</ul>
+		</div>
+		<div class="col-md-4">
+			<ul>
+				<li><img class="iconFooter" src="assets/gps.png" alt="">
+				<li>Guayaquil- Ecuador</li>
+				<li>Avenida Quito y El Oro</li>
+			</ul>
+		</div>
+		<div class="col-md-4">
+			<ul>
+				<li><img class="iconFooter" src="assets/email.png" alt="">
+				<li>nobodyPeluqueria6@gmail.com</li>
+				<li>(593) 9082479989</li>
+			</ul>
+		</div>
+	</div>
+	<br>
+</div>
+
+
+	<script src="bootstrap/js/jquery.js"></script>
+	<script src="bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>
