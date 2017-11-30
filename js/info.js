@@ -41,9 +41,6 @@ function createSvgElement() {
   element.setAttribute('width', '100%');
   element.setAttribute('height', '250px');
   
-  // Improvement... 
-  // you should set a viewBox so that when the page scales 
-  // the whole timeline is still viewable.
   
   element.classList.add('timeline-visualization');
   
@@ -51,6 +48,7 @@ function createSvgElement() {
 }
 
 function drawTimeline(svgElement, data) {
+
   var paper = Snap(svgElement);
   
   var canvasSize = parseFloat(getComputedStyle(paper.node)["width"]);
@@ -92,46 +90,36 @@ function drawTimeline(svgElement, data) {
   });
 }
 
-
 if (supportsSvg()) {
 
-  var timeline = document.querySelector('.timeline');
+  	var timeline = document.querySelector('.timeline');
   
-  //timeline.style.display = 'none';
+  	//timeline.style.display = 'none';
   
-  //var data = getDataFromDefinitionList(timeline);
-  //var data = JSON.parse($("#json"));
+  	//var data = getDataFromDefinitionList(timeline);
+  	//var data = JSON.parse($("#json"));
 
-  var data = [
-  {
-    "year": "2014",
-    "values": ["Ventas: $$$", "Clientes: ###"]
-  },
-  {
-    "year": "2015",
-    "values": ["Ventas: $$$", "Clientes: ###"]
-  },
-  {
-    "year": "2016",
-    "values": ["Ventas: $$$", "Clientes: ###"]
-  },
-  {
-    "year": "2017",
-    "values": ["Ventas: $$$", "Clientes: ###"]
-  }
- 
-];
+  	var svgElement = createSvgElement();
 
-  var svgElement = createSvgElement();
+  	timeline.parentNode.insertBefore(svgElement, timeline);
 
-  timeline.parentNode.insertBefore(svgElement, timeline);
+   	$.getJSON("js/ventas.json", function(data) {
+   		drawTimeline(svgElement, data);
+    });
   
-  drawTimeline(svgElement, data);
+  //drawTimeline(svgElement, data);
 }
 
-var grafico = [
-  {"x": "Ene", "y": 0.001}, {"x": "Feb", "y": 0.002}, {"x": "Mar", "y": 0.003}, {"x": "Abr", "y": 0.004},{"x": "May", "y": 0.005},
-  {"x": "Jun", "y": 0.006}, {"x": "Jul", "y": 0.007}, {"x": "Ago", "y": 0.008}, {"x": "Sep", "y": 0.009}, {"x": "Oct", "y": 0.010}];
+var grafico;
+
+function cargar(archivo) {
+ 	
+
+    $.getJSON("js/" + archivo, function(data) {
+      grafico = data;
+      dibujar();
+    });
+}
 
 
 var margin = {top: 40, right: 20, bottom: 30, left: 40},
@@ -141,66 +129,101 @@ var margin = {top: 40, right: 20, bottom: 30, left: 40},
 // rounded percentage
 var formatPercent = d3.format(".0%");
 
-var x = d3.scale.ordinal()
-  .rangeRoundBands([0, width], .1);
+// var x = d3.scale.ordinal()
+//   .rangeRoundBands([0, width], .1);
 
-var y = d3.scale.linear()
-  .range([height, 0]);
+// var y = d3.scale.linear()
+//   .range([height, 0]);
 
-var xAxis = d3.svg.axis()
-  .scale(x)
-  .orient("bottom");
+// var xAxis = d3.svg.axis()
+//   .scale(x)
+//   .orient("bottom");
 
-var yAxis = d3.svg.axis()
-  .scale(y)
-  .orient("left")
-  .tickFormat(formatPercent);
+// var yAxis = d3.svg.axis()
+//   .scale(y)
+//   .orient("left")
+//   .tickFormat(formatPercent);
 
-var tip = d3.tip()
-  .attr('class', 'd3-tip')
-  .offset([-10, 0])
-  .html(function(d) {
-    return "<strong>Frecuencia:</strong> <span style='color:red'>" + d.y + "</span>";
-  })
+// var tip = d3.tip()
+//   .attr('class', 'd3-tip')
+//   .offset([-10, 0])
+//   .html(function(d) {
+//     return "<strong>Frecuencia:</strong> <span style='color:red'>" + d.y + "</span>";
+//   })
 
-var svg = d3.select(".Anio").append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-  .append("g")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+// var svg = d3.select(".Anio").append("svg")
+//     .attr("width", width + margin.left + margin.right)
+//     .attr("height", height + margin.top + margin.bottom)
+//   .append("g")
+//     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-svg.call(tip);
-
-function dibujar(item, index){
-  x.domain(grafico.map(function(d) { return d.x; }));
-  y.domain([0, d3.max(grafico, function(d) { return d.y; })]);
+// svg.call(tip);
 
 
-var xGroup = svg.append("g")
-      .attr("class", "x axis")
-      .attr("transform", "translate(0," + height + ")")
-      .call(xAxis);
+// FUNCION PARA DIBUJAR GRAFICO CON SVG
 
-var yGroup = svg.append("g")
-      .attr("class", "y axis")
-      .call(yAxis)
-    .append("text")
-      .attr("transform", "rotate(-90)")
-      .attr("y", 6)
-      .attr("dy", ".71em")
-      .style("text-anchor", "end")
-      .text("Frequencia");
+function dibujar(){
 
-svg.selectAll(".bar")
-      .data(grafico)
-    .enter().append("rect")
-      .attr("class", "bar")
-      .attr("x", function(d) { return x(d.x); })
-      .attr("width", x.rangeBand())
-      .attr("y", function(d) { return y(d.y); })
-      .attr("height", function(d) { return height - y(d.y); })
-      .on('mouseover', tip.show)
-      .on('mouseout', tip.hide)
+	var x = d3.scale.ordinal()
+  		.rangeRoundBands([0, width], .1);
+
+	var y = d3.scale.linear()
+	  .range([height, 0]);
+
+	var xAxis = d3.svg.axis()
+	  .scale(x)
+	  .orient("bottom");
+
+	var yAxis = d3.svg.axis()
+	  .scale(y)
+	  .orient("left")
+	  .tickFormat(formatPercent);
+
+	var tip = d3.tip()
+	  .attr('class', 'd3-tip')
+	  .offset([-10, 0])
+	  .html(function(d) {
+	    return "<strong>Frecuencia:</strong> <span style='color:red'>" + d.y + "</span>";
+	  })
+
+	var svg = d3.select(".Anio").append("svg")
+	    .attr("width", width + margin.left + margin.right)
+	    .attr("height", height + margin.top + margin.bottom)
+	  .append("g")
+	    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+	svg.call(tip);
+
+
+	  x.domain(grafico.map(function(d) { return d.x; }));
+	  y.domain([0, d3.max(grafico, function(d) { return d.y; })]);
+
+
+	var xGroup = svg.append("g")
+	      .attr("class", "x axis")
+	      .attr("transform", "translate(0," + height + ")")
+	      .call(xAxis);
+
+	var yGroup = svg.append("g")
+	      .attr("class", "y axis")
+	      .call(yAxis)
+	    .append("text")
+	      .attr("transform", "rotate(-90)")
+	      .attr("y", 6)
+	      .attr("dy", ".71em")
+	      .style("text-anchor", "end")
+	      .text("Frequencia");
+
+	svg.selectAll(".bar")
+	      .data(grafico)
+	    .enter().append("rect")
+	      .attr("class", "bar")
+	      .attr("x", function(d) { return x(d.x); })
+	      .attr("width", x.rangeBand())
+	      .attr("y", function(d) { return y(d.y); })
+	      .attr("height", function(d) { return height - y(d.y); })
+	      .on('mouseover', tip.show)
+	      .on('mouseout', tip.hide)
 }
 
 function type(d) {
@@ -208,5 +231,24 @@ function type(d) {
   return d;
 }
 
-grafico.forEach(dibujar);
+$("#freq2017").click(function(){
+	$("div.Anio svg").remove();
+	cargar("frecuencias2017.json");
+});
+
+$("#freq2016").click(function(){
+	$("div.Anio svg").remove();
+	cargar("frecuencias2016.json");
+});
+
+$("#freq2015").click(function(){
+	$("div.Anio svg").remove();
+	cargar("frecuencias2015.json");
+});
+//grafico.forEach(dibujar);
+
+window.onload = function(){
+
+	cargar("frecuencias2017.json");
+};
 
