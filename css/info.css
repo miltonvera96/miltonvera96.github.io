@@ -86,3 +86,7 @@ stroke-width: 2;
 	text-decoration: none;
 	color:#545454;
 }
+
+.Anio{
+	overflow-x: scroll;
+}
