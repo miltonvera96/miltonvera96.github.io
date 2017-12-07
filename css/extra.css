@@ -9,7 +9,7 @@ body{
 
 /**{
 	border: solid 1px;
-}*/
+}*/																																																																																																																																							
 
 .navbar-default {
     background-color: #fff; 
@@ -49,7 +49,6 @@ div#fotosSlide{
 	font-family: 'Pacifico', cursive;
 	font-size:22px;
 	margin-top: 16px;
-	padding-left: 16px;
 }
 
 .grid{
@@ -323,7 +322,6 @@ div.desc {
 
 	#frase{
 		float: right;
-		width: 60%;
 		text-align: center;
 	}
 
