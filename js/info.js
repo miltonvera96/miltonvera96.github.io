@@ -10,14 +10,14 @@ function supportsSvg() {
 
 function getDataFromDefinitionList(definitionList) {
   var children = definitionList.children;
-  
+
   var yearIndex = {};
   var data = [];
   var currentYear = null;
-  
+
   for (var childIndex = 0; childIndex < children.length; childIndex++) {
     var child = children[childIndex];
-    
+
     if (child.nodeName == 'DT') {
       currentYear = child.textContent;
     } else if (child.nodeName == 'DD' && currentYear !== null) {
@@ -28,7 +28,7 @@ function getDataFromDefinitionList(definitionList) {
           values: []
         });
       }
-      
+
       data[yearIndex[currentYear]].values.push(child.textContent);
     }
   }
@@ -40,47 +40,47 @@ function createSvgElement() {
   var element = document.createElementNS(SVG_NS, 'svg');
   element.setAttribute('width', '100%');
   element.setAttribute('height', '250px');
-  
-  
+
+
   element.classList.add('timeline-visualization');
-  
+
   return element;
 }
 
 function drawTimeline(svgElement, data) {
 
   var paper = Snap(svgElement);
-  
+
   var canvasSize = parseFloat(getComputedStyle(paper.node)["width"]);
-  
+
   var start = +data[0].year;
   var end = +data[data.length - 1].year;
-  
+
   // add some padding
   start--;
   end++; end++;
-  
+
   var range = end - start;
-  
+
   paper.line(0, 200, canvasSize, 200).attr({
     'stroke': 'black',
     'stroke-width': 2
   });
-  
+
   data.forEach(function(datum) {
     var x = canvasSize * (datum.year - start) / range;
-    
+
     paper.circle(x, 200, 6);
-    
+
     paper.text(x, 230, datum.year).attr({
       'text-anchor': 'middle'
     });
-    
+
     var averageIndex = (datum.values.length - 1) / 2;
     var xOffsetSize = 24;
     datum.values.forEach(function(value, index) {
       var offset = (index - averageIndex) * xOffsetSize;
-      
+
       paper.text(x + offset, 180, value)
         .attr({
           'text-anchor': 'start'
@@ -93,9 +93,9 @@ function drawTimeline(svgElement, data) {
 if (supportsSvg()) {
 
   	var timeline = document.querySelector('.timeline');
-  
+
   	//timeline.style.display = 'none';
-  
+
   	//var data = getDataFromDefinitionList(timeline);
   	//var data = JSON.parse($("#json"));
 
@@ -103,19 +103,20 @@ if (supportsSvg()) {
 
   	timeline.parentNode.insertBefore(svgElement, timeline);
 
-   	$.getJSON("js/ventas.json", function(data) {
+   	$.getJSON("data/ventas.json", function(data) {
+      console.log(data);
    		drawTimeline(svgElement, data);
     });
-  
+
   //drawTimeline(svgElement, data);
 }
 
 var grafico;
 
 function cargar(archivo) {
- 	
 
-    $.getJSON("js/" + archivo, function(data) {
+
+    $.getJSON(archivo, function(data) {
       grafico = data;
       dibujar();
     });
@@ -233,22 +234,21 @@ function type(d) {
 
 $("#freq2017").click(function(){
 	$("div.Anio svg").remove();
-	cargar("frecuencias2017.json");
+	cargar("data/frecuencias2017.json");
 });
 
 $("#freq2016").click(function(){
 	$("div.Anio svg").remove();
-	cargar("frecuencias2016.json");
+	cargar("data/frecuencias2016.json");
 });
 
 $("#freq2015").click(function(){
 	$("div.Anio svg").remove();
-	cargar("frecuencias2015.json");
+	cargar("data/frecuencias2015.json");
 });
 //grafico.forEach(dibujar);
 
 window.onload = function(){
 
-	cargar("frecuencias2017.json");
+	cargar("data/frecuencias2017.json");
 };
-

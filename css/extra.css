@@ -9,11 +9,11 @@ body{
 
 /**{
 	border: solid 1px;
-}*/																																																																																																																																							
+}*/
 
 .navbar-default {
-    background-color: #fff; 
-     border-color: #fff; 
+    background-color: #fff;
+     border-color: #fff;
 }
 
 #top{
@@ -350,6 +350,12 @@ div.desc {
 		    .responsive {
 		        width: 50%;
 		    }
+}
+
+@media only screen and (min-width: 1000px){
+		    #logoyf{
+					margin-left: 8%;
+				}
 }
 
 /*
