@@ -1,3 +1,5 @@
+// mongod --dbpath /Users/Usuario/Desktop/Aldair/2017_2S/DAW/mongodb/data
+
 var express=require('express');
 var app=express();
 
