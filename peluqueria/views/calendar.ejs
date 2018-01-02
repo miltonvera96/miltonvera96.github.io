@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, user-scalable:no, initial-scale=1.0, minimun-scale=1.0">
+  <title>DivaPeluquería</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="../css/login.css">
+  <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="../css/ihover.css">
+  <link rel="stylesheet" type="text/css" href="../css/extra.css">
+  <link rel="stylesheet" href="../src/icomoon/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+  <link rel="icon" type="image/png" href="../img/logo.png"/><link href='../fullcalendar/fullcalendar.min.css' rel='stylesheet' />
+  <link href='../fullcalendar/fullcalendar.print.min.css' rel='stylesheet' media='print' />
+  <script src='../fullcalendar/lib/moment.min.js'></script>
+  <script src='../fullcalendar/lib/jquery.min.js'></script>
+  <script src='../fullcalendar/fullcalendar.min.js'></script>
+  <script src='../app/models/cita.js'></script>
+
+</head>
+  <body>
+
+    	<div class="row" id="top">
+    			<div class="col-md-3" >
+
+    				<div class="row" id="logoyf">
+    					<div class="col-md-8" id="frase">La mejor frase para tu negocio</div>
+    					<div class="col-md-4">
+    						<img class="img-" src="../img/logo.png" height="100" width="100"  alt=""/>
+    					</div>
+    				</div>
+    			</div>
+
+    			<div class="col-md-9">
+    				<div id="menu">
+    				    <nav class="navbar navbar-default ">
+    				      <div class="">
+    				        <div class="navbar-header">
+    				          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+    				            <span class="sr-only">Toggle navigation</span>
+    				            <span class="icon-bar"></span>
+    				            <span class="icon-bar"></span>
+    				            <span class="icon-bar"></span>
+    				          </button>
+    				          <a class="navbar-brand" href="../src/index.html"><span class="icon-home"></span>DivaPeluquería</a>
+    				        </div>
+    				        <div id="navbar" class="navbar-collapse collapse">
+    				          <ul class="nav navbar-nav">
+    							<li><a href="../src/promociones.html"><span class="icon-coin-dollar"></span>Promociones</a></li>
+    							<li><a href="../src/nosotros.html"><span class="icon-man-woman"></span>Nosotros</a></li>
+    							<li><a href="../src/contactenos.html"><span class="icon-phone"></span>Contáctenos</a></li>
+    				            <li class="dropdown">
+    				              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="icon-briefcase"></span>Servicios <span class="caret"></span></a>
+    				              <ul class="dropdown-menu">
+    				              	<li><a href="servicios.html"> Peluquería</a></li>
+    				                <li><a href="masajes.html"> Masajes</a></li>
+    								<li><a href="../src/faciales.html"> Faciales</a></li>
+    								<li><a href="../src/manicure.html"> Manicure</a></li>
+    								<li><a href="../src/pedicure.html"> Pedicure</a></li>
+    								<li><a href="../src/paraHombres.html"> Para Hombres</a></li>
+    								<li><a href="../src/galeria.html"> Galería</a></li>
+    				                <!-- <li role="separator" class="divider"></li>
+    				                <li class="dropdown-header">Nav header</li>
+    				                <li><a href="#">Separated link</a></li>
+    				                <li><a href="#">One more separated link</a></li> -->
+    				              </ul>
+    				            </li>
+    				          </ul>
+    				          <ul class="nav navbar-nav navbar">
+    				          	<!-- <li><a href="info.html"><span class="glyphicon glyphicon-info-sign"></span> Info</a></li> -->
+    				            <!--<li><a href="">Sign Up</a></li> -->
+    			          </ul>
+    				        </div><!--/.nav-collapse -->
+    				      </div>
+    				    </nav>
+    				</div>
+    			</div>
+    		</div>
+
+        <div class="row">
+          <div class="col-md-3">
+            <ul class="navbar-serv">
+              <li class="submenu-title">Opciones</li>
+              <li class="submenu-active"><a href="/profile"> Perfil</a></li>
+              <li><a href="/reservaciones"> Reservaciones</a></li>
+              <li><a href="/productos"> Productos </a></li>
+              <li><a href=#> ----- </a></li>
+              <li><a href=#> ----- </a></li>
+              <li><a href=#> ----- </a></li>
+              <li><a href="/datos"> Cambiar Datos </a></li>
+            </ul>
+          </div>
+
+          <div class="col-md-8">
+            <div id='calendar'></div>
+          </div>
+        </div>
+
+          <div class="footer">
+
+              <div class="row">
+                  <div class="col-md-12">
+                      <ul>
+                          <li><h2>DivaPeluquería</h2></li>
+                      </ul>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-md-12">
+                      <ul>
+                          <li><h3>Redes Sociales</h3></li>
+                          <li>
+                              <a href="https://facebook.com"><img class="redes" alt="" src="../img/facebook.png"></a>
+                              <a href="https://twitter.com"><img class="redes" alt="" src="../img/twitter.png"></a>
+                              <a href="https://instagram.com"><img class="redes" alt="" src="../img/instagram.png"></a>
+                          </li>
+                      </ul>
+                  </div>
+              </div>
+
+              <br>
+
+              <div class="row">
+                  <div class="col-md-4">
+                      <ul>
+                          <li><img class="iconFooter" src="../img/phone.png" alt="">
+                          <li>(04) 2338579</li>
+                          <li>(593) 9082479989</li>
+                      </ul>
+                  </div>
+
+                  <div class="col-md-4">
+                      <ul>
+                          <li><img class="iconFooter" src="../img/gps.png" alt="">
+                          <li>Guayaquil- Ecuador</li>
+                          <li>Avenida Quito y El Oro</li>
+                      </ul>
+                  </div>
+
+                  <div class="col-md-4">
+                      <ul>
+                          <li><img class="iconFooter" src="../img/email.png" alt="">
+                          <li>nobodyPeluqueria6@gmail.com</li>
+                          <li>(593) 9082479989</li>
+                      </ul>
+                  </div>
+              </div>
+
+              <br>
+          </div>
+          <script src="../js/bootstrap.min.js"></script>
+          <script src="../js/login.js"></script>
+      <
+      </body>
+</html>

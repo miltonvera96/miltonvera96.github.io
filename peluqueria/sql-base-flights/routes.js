@@ -14,7 +14,7 @@ var Route = function (airline, airlineID, sourceAirport, sourceAirportID, destin
 
 
   this.agregarBd = function(){
-    var sql = "INSERT INTO Route VALUES('"
+    var sql = "INSERT INTO Route(airline, airlineID, sourceAirport, sourceAirportID, destinationAirport, destinationAirportID, codeshare, stops, equipment) VALUES('"
     + this.airline + "','"
     + this.airlineID + "','"
     + this.sourceAirport + "','"
@@ -27,9 +27,9 @@ var Route = function (airline, airlineID, sourceAirport, sourceAirportID, destin
     "')";
 
     sbConnection.con.query(sql, function (err, result) {
-      if (err){
-        //throw err;
-        console.log("No se pudo agregar!");
+      if (err){console.log("No se pudo agregar!");}
+      else{
+        return true;
       }
     });
 
@@ -38,13 +38,15 @@ var Route = function (airline, airlineID, sourceAirport, sourceAirportID, destin
 }
 
 var crearTabla = function(){
-    var sql = "CREATE TABLE Route (airline VARCHAR(255), airlineID VARCHAR(255) FOREIGN KEY REFERENCES Airline(airlineID), sourceAirport VARCHAR(255), sourceAirportID VARCHAR(255) FOREIGN KEY REFERENCES Airport(AirportID), destinationAirport VARCHAR(255), destinationAirportID VARCHAR(255) FOREIGN KEY REFERENCES Airport(AirportID), codeshare VARCHAR(255), stops VARCHAR(255), equipment VARCHAR(255))";
+    var sql = "CREATE TABLE Route (airline VARCHAR(255), airlineID VARCHAR(255) FOREIGN KEY REFERENCES Airline(airlineID), sourceAirport VARCHAR(255),sourceAirportID VARCHAR(255) FOREIGN KEY REFERENCES Airport(airportID),destinationAirport VARCHAR(255),destinationAirportID VARCHAR(255) FOREIGN KEY REFERENCES Airport(airportID), codeshare VARCHAR(255),stops VARCHAR(255),equipment VARCHAR(255))";
 
     sbConnection.con.query(sql, function (err, result) {
       if (err) {
         console.log("No se pudo crear tabla!");
       }
-      console.log("Table created");
+      else{
+        console.log("Table created");
+      }
     });
 }
 

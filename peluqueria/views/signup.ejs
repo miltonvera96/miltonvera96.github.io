@@ -2,46 +2,160 @@
 <!doctype html>
 <html>
 <head>
-    <title>Node Authentication</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
-    <style>
-        body        { padding-top:80px; }
-    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, user-scalable:no, initial-scale=1.0, minimun-scale=1.0">
+  <title>DivaPeluquería</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="../css/login.css">
+  <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="../css/ihover.css">
+  <link rel="stylesheet" type="text/css" href="../css/extra.css">
+  <link rel="stylesheet" href="../src/icomoon/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+  <link rel="icon" type="image/png" href="../img/logo.png"/>
 </head>
 <body>
-<div class="container">
+  <div class="row" id="top">
+      <div class="col-md-3" >
 
-<div class="col-sm-6 col-sm-offset-3">
-
-    <h1><span class="fa fa-sign-in"></span> Signup</h1>
-
-    <!-- show any messages that come back with authentication -->
-    <% if (message.length > 0) { %>
-        <div class="alert alert-danger"><%= message %></div>
-    <% } %>
-
-    <!-- LOGIN FORM -->
-    <form action="/signup" method="post">
-        <div class="form-group">
-            <label>Email</label>
-            <input type="text" class="form-control" name="email">
+        <div class="row" id="logoyf">
+          <div class="col-md-8" id="frase">La mejor frase para tu negocio</div>
+          <div class="col-md-4">
+            <img class="img-" src="../img/logo.png" height="100" width="100"  alt=""/>
+          </div>
         </div>
-        <div class="form-group">
-            <label>Password</label>
-            <input type="password" class="form-control" name="password">
+      </div>
+
+      <div class="col-md-9">
+        <div id="menu">
+            <nav class="navbar navbar-default ">
+              <div class="">
+                <div class="navbar-header">
+                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+                  <a class="navbar-brand" href="../src/index.html"><span class="icon-home"></span>DivaPeluquería</a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                  <ul class="nav navbar-nav">
+              <li><a href="../src/promociones.html"><span class="icon-coin-dollar"></span>Promociones</a></li>
+              <li><a href="../src/nosotros.html"><span class="icon-man-woman"></span>Nosotros</a></li>
+              <li><a href="../src/contactenos.html"><span class="icon-phone"></span>Contáctenos</a></li>
+                    <li class="dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="icon-briefcase"></span>Servicios <span class="caret"></span></a>
+                      <ul class="dropdown-menu">
+                        <li><a href="servicios.html"> Peluquería</a></li>
+                        <li><a href="masajes.html"> Masajes</a></li>
+                <li><a href="../src/faciales.html"> Faciales</a></li>
+                <li><a href="../src/manicure.html"> Manicure</a></li>
+                <li><a href="../src/pedicure.html"> Pedicure</a></li>
+                <li><a href="../src/paraHombres.html"> Para Hombres</a></li>
+                <li><a href="../src/galeria.html"> Galería</a></li>
+                        <!-- <li role="separator" class="divider"></li>
+                        <li class="dropdown-header">Nav header</li>
+                        <li><a href="#">Separated link</a></li>
+                        <li><a href="#">One more separated link</a></li> -->
+                      </ul>
+                    </li>
+                  </ul>
+                  <ul class="nav navbar-nav navbar">
+                    <!-- <li><a href="info.html"><span class="glyphicon glyphicon-info-sign"></span> Info</a></li> -->
+                    <!--<li><a href="">Sign Up</a></li> -->
+                </ul>
+                </div><!--/.nav-collapse -->
+              </div>
+            </nav>
+        </div>
+      </div>
+    </div>
+
+
+
+        <div class="login">
+            <div class="container">
+                <h1>Sign Up</h1>
+                <div class="card card-container">
+                    <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
+                    <img id="profile-img" class="profile-img-card" src="../img/avatar_2x.png" />
+                    <p id="profile-name" class="profile-name-card"></p>
+                    <form class="form-signin" action="/signup" method="post">
+                        <span id="reauth-email" class="reauth-email"></span>
+                        <input name="email" type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+                        <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                        <div id="remember" class="checkbox">
+                            <label>
+                                <input type="checkbox" value="remember-me"> Remember me
+                            </label>
+                        </div>
+                        <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Signup</button>
+                    </form><!-- /form -->
+                    <a href="#" class="forgot-password">
+                        Forgot the password?
+                    </a>
+                    <p>Ya tiene una cuenta? <a href="/login">Login</a></p>
+                    <p>Ir a <a href="/src/index.html">Inicio</a>.</p>
+                </div><!-- /card-container -->
+            </div><!-- /container -->
         </div>
 
-        <button type="submit" class="btn btn-warning btn-lg">Signup</button>
-    </form>
 
-    <hr>
+        <div class="footer">
 
-    <p>Already have an account? <a href="/login">Login</a></p>
-    <p>Or go <a href="/">home</a>.</p>
+            <div class="row">
+                <div class="col-md-12">
+                    <ul>
+                        <li><h2>DivaPeluquería</h2></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <ul>
+                        <li><h3>Redes Sociales</h3></li>
+                        <li>
+                            <a href="https://facebook.com"><img class="redes" alt="" src="../img/facebook.png"></a>
+                            <a href="https://twitter.com"><img class="redes" alt="" src="../img/twitter.png"></a>
+                            <a href="https://instagram.com"><img class="redes" alt="" src="../img/instagram.png"></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
 
-</div>
+            <br>
 
-</div>
+            <div class="row">
+                <div class="col-md-4">
+                    <ul>
+                        <li><img class="iconFooter" src="../img/phone.png" alt="">
+                        <li>(04) 2338579</li>
+                        <li>(593) 9082479989</li>
+                    </ul>
+                </div>
+
+                <div class="col-md-4">
+                    <ul>
+                        <li><img class="iconFooter" src="../img/gps.png" alt="">
+                        <li>Guayaquil- Ecuador</li>
+                        <li>Avenida Quito y El Oro</li>
+                    </ul>
+                </div>
+
+                <div class="col-md-4">
+                    <ul>
+                        <li><img class="iconFooter" src="../img/email.png" alt="">
+                        <li>nobodyPeluqueria6@gmail.com</li>
+                        <li>(593) 9082479989</li>
+                    </ul>
+                </div>
+            </div>
+
+            <br>
+        </div>
+        <script src="../js/jquery.min.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
+        <script src="../js/login.js"></script>
 </body>
 </html>

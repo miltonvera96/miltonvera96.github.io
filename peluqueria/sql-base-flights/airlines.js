@@ -27,7 +27,7 @@ var Airline = function (airlineID, name, alias, iata, icao, callsign, country, a
     sbConnection.con.query(sql, function (err, result) {
       if (err){
         //throw err;
-        console.log("No se pudo agregar!");
+        return 0;
       }
     });
 

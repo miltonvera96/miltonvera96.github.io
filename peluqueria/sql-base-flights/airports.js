@@ -37,7 +37,8 @@ var Airport = function (airportID, name, city, country, iata, icao, latitude, lo
 
     sbConnection.con.query(sql, function (err, result) {
       if (err){
-        console.log("No se pudo agregar!");
+        // console.log("No se pudo agregar!");
+        return 0;
       }
     });
 
