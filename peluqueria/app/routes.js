@@ -1,4 +1,6 @@
 // app/routes.js
+var sbConnection = require('../config/database.js');
+
 module.exports = function(app, passport) {
 
     // =====================================
@@ -66,9 +68,19 @@ module.exports = function(app, passport) {
 
 
     app.get('/reservaciones',isLoggedIn,  function(req, res) {
-        res.render('calendar.ejs', {
-            user : req.user // get the user out of session and pass to template
-        });
+
+      var array = [];
+      var obj = {
+        title: 'Hola Milton',
+        start: '2017-12-07',
+        end: '2017-12-10'
+      };
+      array[0] = obj;
+
+      console.log(array);
+      res.render('calendar.ejs', {
+        data: array
+      });
     });
 };
 

@@ -13,6 +13,8 @@
   };
   array[0] = obj;
 
+
+
   $(document).ready(function() {
 
     $('#calendar').fullCalendar({
