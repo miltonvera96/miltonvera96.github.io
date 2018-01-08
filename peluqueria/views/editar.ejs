@@ -13,6 +13,11 @@
   <link rel="stylesheet" href="../src/icomoon/style.css">
   <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
   <link rel="icon" type="image/png" href="../img/logo.png"/>
+  <script src="../js/jquery.min.js"></script>
+  <script src="../js/bootstrap.min.js"></script>
+  <link href="../css/bootstrap-editable.css" rel="stylesheet">
+  <script src="../js/bootstrap-editable.min.js"></script>
+
 
 </head>
 <body>
@@ -88,24 +93,43 @@
               <li class="submenu-title">Opciones</li>
               <li class="submenu-active"><a href="/profile"> Perfil</a></li>
               <li><a href="/reservaciones"> Reservaciones</a></li>
-              <li><a href="/crearReserva"> Crear Reservacion </a></li>
               <li><a href="/productos"> Productos </a></li>
               <li><a href="/datos"> Editar Perfil </a></li>
             </ul>
           </div>
 
-            <!-- LOCAL INFORMATION -->
             <div class="col-sm-6">
-                <div class="well">
-                    <h3><span class="fa fa-user"></span> Local</h3>
+              <% if (data.length > 0) { %>
+                  <h2>Datos de la Cuenta</h2>
+                  <table class="table table-hover ">
 
-                        <p>
-                            <strong>id</strong>: <%= user._id %><br>
-                            <strong>email</strong>: <%= user.local.email %><br>
-                            <strong>password</strong>: <%= user.local.password %>
-                        </p>
+                      <tbody>
+                        <tr>
+                          <td><b>Nombre</b><td>
+                          <td><a href="#" id="username" data-type="text" data-pk="1" data-name="username" data-original-title="Enter username" class="editable">superuser</a></td>
+                        </tr>
+                        <tr>
+                          <td><b>Apellido</b></td>
+                          <td><%= data[0].apellido%></td>
+                        </tr>
+                        <tr>
+                          <td><b>Teléfono</b></td>
+                          <td><%= data[0].telefono%></td>
+                        </tr>
+                        <tr>
+                          <td><b>Cédula</b></td>
+                          <td><%= data[0].cedula%></td>
+                        </tr>
 
-                </div>
+                        <tr>
+                          <td><b>Email</b></td>
+                          <td><%= data[0].email%></td>
+                        </tr>
+                      </tbody>
+                  </table>
+              <% } else{ %>
+                <h2>No Existen Datos</h2>
+              <% } %>
             </div>
 
         </div>
@@ -163,9 +187,8 @@
 
         <br>
     </div>
-    <script src="../js/jquery.min.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
-    <script src="../js/login.js"></script>
 
+    <script>
+    $('#username').editable();    </script>
 </body>
 </html>

@@ -68,20 +68,38 @@ module.exports = function(app, passport) {
 
 
     app.get('/reservaciones',isLoggedIn,  function(req, res) {
-
-      var array = [];
-      var obj = {
-        title: 'Hola Milton',
-        start: '2017-12-07',
-        end: '2017-12-10'
-      };
-      array[0] = obj;
-
-      console.log(array);
-      res.render('calendar.ejs', {
-        data: array
+      var user = req.user;
+      var query = 'Select * From cita where cliente ="' + user.local.email + '" ;'
+      sbConnection.con.query(query, function (err, result, fields) {
+          if (err) throw err;
+          res.render('calendar.ejs', {
+            data: result
+          });
       });
     });
+
+    app.get('/crearReserva',isLoggedIn,  function(req, res) {
+      var query = 'Select * From empleado;'
+      sbConnection.con.query(query, function (err, result, fields) {
+          if (err) throw err;
+          res.render('crearReserva.ejs', {
+            data: result
+          });
+    });
+  });
+
+  app.get('/datos',isLoggedIn,  function(req, res) {
+    var user = req.user;
+    var query = 'Select * From cliente where email ="' + user.local.email + '" ;'
+    sbConnection.con.query(query, function (err, result, fields) {
+        if (err) throw err;
+        res.render('editar.ejs', {
+          data: result
+        });
+  });
+});
+
+
 };
 
 // route middleware to make sure a user is logged in
