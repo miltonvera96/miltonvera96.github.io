@@ -6,6 +6,10 @@ var LocalStrategy   = require('passport-local').Strategy;
 // load up the user model
 var User            = require('../app/models/user');
 
+// load the mysql connection
+var sbConnection = require('./database.js');
+
+
 // expose this function to our app using module.exports
 module.exports = function(passport) {
 
@@ -66,11 +70,20 @@ module.exports = function(passport) {
                 newUser.local.password = newUser.generateHash(password);
 
                 // save the user
+                // mysql
+                var query = 'Insert into cliente(email) values("' + email + '");';
+                sbConnection.con.query(query, function (err, result, fields) {
+                    if (err) throw err;
+                });
+
+                //mongodb
                 newUser.save(function(err) {
                     if (err)
                         throw err;
                     return done(null, newUser);
                 });
+
+
             }
 
         });

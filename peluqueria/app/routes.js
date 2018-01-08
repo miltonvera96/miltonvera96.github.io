@@ -1,5 +1,8 @@
 // app/routes.js
 var sbConnection = require('../config/database.js');
+var bodyParser = require('body-parser');
+
+var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 module.exports = function(app, passport) {
 
@@ -87,6 +90,21 @@ module.exports = function(app, passport) {
           });
     });
   });
+  app.post('/crearReserva',isLoggedIn, urlencodedParser, function(req, res) {
+    var user = req.user;
+    let respt = req.body;
+    var query = 'Insert into cita(fechaC, hora, descripcion, estado, cliente, empleado) values ("'+ respt.fecha + '", "'+ respt.hora +'", "'+ respt.descripcion +'","En espera", "' + user.local.email + '", "' + respt.empleado + '");'
+    sbConnection.con.query(query, function (err, result, fields) {
+        if (err){
+          res.sendStatus(500);
+        }
+        else {
+          res.redirect('/crearReserva');
+        }
+    });
+
+  });
+
 
   app.get('/datos',isLoggedIn,  function(req, res) {
     var user = req.user;

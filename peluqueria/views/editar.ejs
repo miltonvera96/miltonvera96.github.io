@@ -93,6 +93,7 @@
               <li class="submenu-title">Opciones</li>
               <li class="submenu-active"><a href="/profile"> Perfil</a></li>
               <li><a href="/reservaciones"> Reservaciones</a></li>
+              <li><a href="/crearReserva"> Crear Reservacion </a></li>
               <li><a href="/productos"> Productos </a></li>
               <li><a href="/datos"> Editar Perfil </a></li>
             </ul>
@@ -100,13 +101,14 @@
 
             <div class="col-sm-6">
               <% if (data.length > 0) { %>
-                  <h2>Datos de la Cuenta</h2>
+                  <h2>Datos de la Cuenta </h2>
                   <table class="table table-hover ">
-
+                      <thead>
+                      </thead>
                       <tbody>
                         <tr>
                           <td><b>Nombre</b><td>
-                          <td><a href="#" id="username" data-type="text" data-pk="1" data-name="username" data-original-title="Enter username" class="editable">superuser</a></td>
+                          <td><%= data[0].nombre%></td>
                         </tr>
                         <tr>
                           <td><b>Apellido</b></td>
