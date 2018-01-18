@@ -72,12 +72,6 @@
   			</div>
   		</div>
 
-        <!-- show any messages that come back with authentication -->
-        <% if (message.length > 0) { %>
-            <div class="alert alert-danger"><%= message %></div>
-        <% } %>
-
-
     <div class="login">
         <div class="container">
             <h1>Log In</h1>
@@ -96,6 +90,10 @@
                     </div>
                     <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign in</button>
                 </form><!-- /form -->
+                <!-- show any messages that come back with authentication -->
+                <% if (message.length > 0) { %>
+                    <div class="alert alert-danger"><%= message %></div>
+                <% } %>
                 <a href="#" class="forgot-password">
                     Forgot the password?
                 </a>

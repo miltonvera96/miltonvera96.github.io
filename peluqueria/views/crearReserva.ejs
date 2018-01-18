@@ -94,10 +94,16 @@
 
             <!-- LOCAL INFORMATION -->
             <div class="col-md-6">
+
+                <h2 class="headerText"> Crear Reservacion</h2>
                 <form role="form" id="Reserva" action="/crearReserva" method="POST">
                   	<div class="form-group">
                       	<label class="control-label" for="nombre">Nombres</label>
-                      	<input type="text" class="form-control" id="Nombre" name="Nombre" placeholder="Introduzca su nombre" required autofocus />
+                      	<input type="text" class="form-control" id="Nombre" name="nombre" placeholder="Introduzca su nombre" value="" required autofocus />
+                  	</div>
+                    <div class="form-group">
+                      	<label class="control-label" for="cedula">Cedula</label>
+                      	<input type="text" class="form-control" id="cedula" name="cedula" placeholder="Introduzca su numero de cedula" required autofocus />
                   	</div>
                   	<div class="form-group">
                       	<label class="control-label" for="descripcion">Descripcion</label>
@@ -120,19 +126,26 @@
                           <% } %>
                       	</select>
                   	</div>
-                  	<div class="form-group">
-                      	<label class="control-label" for="fecha">Fecha</label>
-                        <input id="date" type="date" name="fecha">
-                  	</div>
-                    <div class="form-group">
-                      	<label class="control-label" for="hora">Hora</label>
-                        <input id="time" type="time" name="hora">
-                  	</div>
-                  	<div class="form-group">
-                      	<input type="submit" class="btn btn-primary" value="Enviar">
+                    <div class="form-row">
+                    	<div class="form-group col-md-6">
+                        	<label class="control-label" for="fecha">Fecha</label>
+                          <input id="date" type="date" name="fecha">
+                    	</div>
+                      <div class="form-group col-md-6">
+                        	<label class="control-label" for="hora">Hora</label>
+                          <input id="time" type="time" name="hora">
+                    	</div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-3">
+                      	   <label class="control-label" for="total">Total</label>
+                           <input class="form-control" type="text" name="total" required autofocus>
+                        </div>
+                    </div>
+                  	<div class="form-group col-md-12">
+                      	<input type="submit" class="btn btn-primary" value="Registrar">
                       	<input type="reset" class="btn btn-default" value="Limpiar">
                   	</div>
-                  	<div id="respuesta" style="display: none;"></div>
               	</form>
             </div>
 
