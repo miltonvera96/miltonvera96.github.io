@@ -2,6 +2,7 @@
 var sbConnection = require('../config/database.js');
 var wait     = require('wait.for');
 var bodyParser = require('body-parser');
+var meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
 
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
@@ -71,14 +72,36 @@ module.exports = function(app, passport) {
       var date = new Date();
       var mes = date.getMonth() + 1;
       var anio = date.getFullYear();
+      var fecha = {
+        mes : meses[date.getMonth()],
+        anio: anio
+      }
       var query = 'Select * From cita where cliente ="' + user.local.email + '" and year(fechaC)=' + anio + ' and month(fechaC)=' + mes+ ';'
       sbConnection.con.query(query, function (err, result, fields) {
           if (err) throw err;
+          console.log(result);
           res.render('reservaciones.ejs', {
-            data: result
+            data: result,
+            fecha: fecha
           });
       });
     });
+
+    app.get('/reservaciones/cargarReservas',isLoggedIn,  function(req, res) {
+      var user = req.user;
+      var date = new Date();
+      var mes = date.getMonth() + 1;
+      var anio = date.getFullYear();
+      var query = 'Select * From cita where cliente ="' + user.local.email + '" and year(fechaC)=' + anio + ' and month(fechaC)=' + mes+ ';'
+      sbConnection.con.query(query, function (err, result, fields) {
+          if (err) throw err;
+          for (var i=0; i<result.length; i++){
+            result[i].acciones = '<a href="reservaciones/editar/' + result[i].idcita + '" class="btn btn-info editar" role="button"><span class="glyphicon glyphicon-pencil"></a> <a href="reservaciones/eliminar/'+ result[i].idcita + '" class="btn btn-danger eliminar" role="button"><span class="glyphicon glyphicon-remove"></a>'
+          }
+          res.send(result)
+      });
+    });
+
 
     // RENDERIZA PAGINA PARA CREAR UNA RESERVACION
     app.get('/crearReserva',isLoggedIn,  function(req, res) {
@@ -91,11 +114,10 @@ module.exports = function(app, passport) {
     });
   });
 
-  // ENDPOINT PARA GUARDAR UNA CITA EN LA BASE DE DATOS
-  app.post('/crearReserva',isLoggedIn, urlencodedParser, function(req, res) {
+  app.get('/crearReserva',isLoggedIn, urlencodedParser, function(req, res) {
     var user = req.user;
     let respt = req.body;
-    var query = 'Insert into cita (fechaC, hora, descripcion, estado, cliente, empleado, nombreCliente, cedulaliente) \
+    var query = 'Insert into cita (fechaC, hora, descripcion, estado, cliente, empleado, nombreCliente, cedulaCliente) \
       values ("'+ respt.fecha + '", "'+ respt.hora +'", "'+ respt.descripcion +'\
       ","En espera", "' + user.local.email + '", "' + respt.empleado + '", "' + respt.nombre + '", "' + respt.cedula + '");'
     sbConnection.con.query(query, function (err, result, fields) {
@@ -128,9 +150,13 @@ module.exports = function(app, passport) {
     var query = 'call buscarCitas("' + busq.tipo + '", "' + busq.anio + '", "' + busq.mes + '", "' + user.local.email + '");'
     sbConnection.con.query(query, function (err, result, fields) {
         if (err) throw err;
-          res.send(result);
-        });
-      });
+        console.log(result[0]);
+        for (var i=0; i<result[0].length; i++){
+          result[0][i].acciones = '<a href="reservaciones/editar/' + result[0][i].idcita + '" class="btn btn-info editar" role="button"><span class="glyphicon glyphicon-pencil"></a> <a href="reservaciones/eliminar/'+ result[0][i].idcita + '" class="btn btn-danger eliminar" role="button"><span class="glyphicon glyphicon-remove"></a>'
+        }
+        res.send(result[0])
+    });
+  });
 
   // ENDPOINT PARA ELIMINAR UNA RESERVACION DADO UN ID DE LA RESERVACION
   app.delete('/reservaciones/eliminar/:id', isLoggedIn, function(req, res){

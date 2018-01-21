@@ -5,17 +5,13 @@
   <meta name="viewport" content="width=device-width, user-scalable:no, initial-scale=1.0, minimun-scale=1.0">
   <title>DivaPeluquería</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="../css/login.css">
   <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="../css/ihover.css">
   <link rel="stylesheet" type="text/css" href="../css/extra.css">
   <link rel="stylesheet" href="../src/icomoon/style.css">
   <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
   <link rel="icon" type="image/png" href="../img/logo.png"/><link href='../fullcalendar/fullcalendar.min.css' rel='stylesheet' />
-  <link href='../fullcalendar/fullcalendar.print.min.css' rel='stylesheet' media='print' />
-  <script src='../fullcalendar/lib/moment.min.js'></script>
-  <script src='../fullcalendar/lib/jquery.min.js'></script>
-  <script src='../fullcalendar/fullcalendar.min.js'></script>
+  <link rel="stylesheet" type="text/css" href="../css/dataTables.bootstrap.min.css">
 
 </head>
   <body>
@@ -77,10 +73,11 @@
     			</div>
     		</div>
 
-        <div class="page-header text-center">
+        <!-- <div class="page-header text-center">
             <h1><span class="fa fa-anchor"></span> Profile Page</h1>
             <a href="/logout" class="btn btn-default btn-sm">Logout</a>
-        </div>
+        </div> -->
+        <p><br></p>
 
         <div class="row">
           <div class="col-md-3">
@@ -90,11 +87,11 @@
               <li class="submenu-active"><a href="/reservaciones"> Reservaciones</a></li>
               <li><a href="/crearReserva"> Crear Reservacion </a></li>
               <li><a href="/productos"> Productos </a></li>
-              <li><a href="/datos"> Cambiar Datos </a></li>
+              <li><a href="/datos"> Datos de la Cuenta </a></li>
             </ul>
           </div>
 
-          <div class="col-md-8">
+          <div class="col-md-9">
             <div id='reservaciones'>
               <% if (data.length > 0) { %>
                 <h2 class="headerText">Reservaciones Efectuadas</h2>
@@ -147,34 +144,44 @@
                   </div>
                 </form>
 
-                  <table class="table table-hover text-center">
-                      <thead class="thead-dark">
+                  <table class="table table-hover table-striped" id="tablaReservaciones">
+                      <caption>Lista de reservas de <%= fecha.mes%> del <%= fecha.anio%></caption>
+                      <thead class="thead-light">
                           <tr>
                               <th> Fecha</th>
                               <th> Hora</th>
                               <th> Tipo</th>
                               <th> Estado</th>
                               <th> Empleado</th>
-                              <th> Valor</th>
+                              <th> Nombre Cliente</th>
+                              <th> Acciones</th>
                           </tr>
                       </thead>
                       <tbody id="cuerpoReservas">
-                        <% data.forEach(function(item, index){ %>
+
+                        <!-- <% data.forEach(function(item, index){ %>
                           <tr>
-                            <!-- <td><a href="/delete/<%= item.id %>">DELETE</a></td>
-                            <td><a href="/edit/<%= item.id %>">EDIT</a></td> -->
                             <td><%= item.fechaC %></td>
                             <td><%= item.hora %></td>
                             <td><%= item.descripcion %></td>
                             <td><%= item.estado %></td>
                             <td><%= item.empleado %></td>
-                            <td>$$$<td>
-                            <td><a href="reservaciones/editar/<%= item.idcita %>" class="btn btn-info editar" role="button">Editar</a></td>
+                            <td>precio<td>
+                            <td><a href="reservaciones/editar/<%= item.idcita %>" class="btn btn-info editar" role="button">Editar</a> <a href="reservaciones/eliminar/<%= item.idcita %>" class="btn btn-danger eliminar" role="button">Eliminar</a></td>
                             <td><a href="reservaciones/eliminar/<%= item.idcita %>" class="btn btn-danger eliminar" role="button">Eliminar</a></td>
-                            <!-- <td><button type="button" class="btn btn-danger" id="reservaciones/eliminar/<%= item.idcita %>">Eliminar</button></td> -->
                           </tr>
-                        <% }); %>
+                        <% }); %> -->
                       </tbody>
+                      <tfoot>
+                        <tr>
+                            <th> Fecha</th>
+                            <th> Hora</th>
+                            <th> Tipo</th>
+                            <th> Estado</th>
+                            <th> Empleado</th>
+                            <th> nombreCliente</th>
+                        </tr>
+                      </tfoot>
                   </table>
               <% } else{ %>
                 <h2>No Existen Reservaciones Efectuadas</h2>
@@ -235,8 +242,10 @@
 
               <br>
           </div>
+          <script src="../js/jquery.js"></script>
+          <script src="../js/jquery.dataTables.js"></script>
+          <script src="../js/dataTables.bootstrap.min.js"></script>
           <script src="../js/bootstrap.min.js"></script>
-          <script src="../js/login.js"></script>
           <script src="../js/calendario.js"></script>
       </body>
 </html>

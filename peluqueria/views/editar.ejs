@@ -11,6 +11,7 @@
   <link rel="stylesheet" type="text/css" href="../css/ihover.css">
   <link rel="stylesheet" type="text/css" href="../css/extra.css">
   <link rel="stylesheet" href="../src/icomoon/style.css">
+  <link rel="stylesheet" href="../css/editar.css">
   <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
   <link rel="icon" type="image/png" href="../img/logo.png"/>
   <script src="../js/jquery.min.js"></script>
@@ -81,10 +82,11 @@
 
     <div class="row">
 
-        <div class="page-header text-center">
+        <!-- <div class="page-header text-center">
             <h1><span class="fa fa-anchor"></span> Profile Page</h1>
             <a href="/logout" class="btn btn-default btn-sm">Logout</a>
-        </div>
+        </div> -->
+        <p><br></p>
 
         <div class="row">
 
@@ -95,13 +97,31 @@
               <li><a href="/reservaciones"> Reservaciones</a></li>
               <li><a href="/crearReserva"> Crear Reservacion </a></li>
               <li><a href="/productos"> Productos </a></li>
-              <li><a href="/datos"> Editar Perfil </a></li>
+              <li><a href="/datos"> Datos de la Cuenta </a></li>
             </ul>
           </div>
 
-            <div class="col-sm-6">
+            <div class="col-sm-9">
+              <h2 class="headerText">Datos de la Cuenta </h2>
+              <div>
+                <!--UPLOAD-->
+                <form #f="ngForm" enctype="multipart/form-data" novalidate *ngIf="currentStatus === STATUS_INITIAL || currentStatus === STATUS_SAVING">
+                  <h1>Imagen de Perfil</h1>
+                  <div class="dropbox col-md-4">
+                    <input type="file" multiple [name]="uploadFieldName" (change)="filesChange($event.target.name, $event.target.files)" [disabled]="currentStatus === STATUS_SAVING" accept="image/*" #photos>
+                    <p *ngIf="currentStatus === STATUS_INITIAL">
+                      Drag your file(s) here to begin<br>
+                      or click to browse
+                    </p>
+                    <p *ngIf="currentStatus === STATUS_SAVING">
+                      Uploading {{ photos.files.length }} files...
+                    </p>
+                  </div>
+                </form>
+              </div>
+
               <% if (data.length > 0) { %>
-                  <h2 class="headerText">Datos de la Cuenta </h2>
+
                   <table class="table table-hover ">
                       <thead>
                       </thead>
