@@ -2,6 +2,8 @@
 var sbConnection = require('../config/database.js');
 var wait     = require('wait.for');
 var bodyParser = require('body-parser');
+var User            = require('../app/models/user');
+var Admin            = require('../app/models/admin');
 var meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
 
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
@@ -18,7 +20,12 @@ module.exports = function(app, passport) {
     // Presenta formulario de Inicio de sesion
     app.get('/login', function(req, res) {
         // render the page and pass in any flash data if it exists
-        res.render('login2.ejs', { message: req.flash('loginMessage') });
+        res.render('login2.ejs', { role: '/login', message: req.flash('loginMessage') });
+    });
+
+    app.get('/adminlogin', function(req, res) {
+        // render the page and pass in any flash data if it exists
+        res.render('login2.ejs', { role: '/adminlogin', message: req.flash('loginMessage') });
     });
 
     // process the login form
@@ -39,6 +46,12 @@ module.exports = function(app, passport) {
         failureFlash : true // allow flash messages
     }));
 
+    app.post('/adminsignup', passport.authenticate('admin-signup', {
+        successRedirect : '/adminprofile', // redirect to the secure profile section
+        failureRedirect : '/', // redirect back to the signup page if there is an error
+        failureFlash : true // allow flash messages
+    }));
+
     // process the login form
    app.post('/login', passport.authenticate('local-login', {
        successRedirect : '/profile', // redirect to the secure profile section
@@ -46,11 +59,23 @@ module.exports = function(app, passport) {
        failureFlash : true // allow flash messages
    }));
 
+   // process the admin login form
+   app.post('/adminlogin', passport.authenticate('admin-login'), function(req,res){
+     res.redirect('/admin')
+   });
+
     // PROFILE SECTION =====================
     // we will want this protected so you have to be logged in to visit
     // we will use route middleware to verify this (the isLoggedIn function)
     app.get('/profile', isLoggedIn, function(req, res) {
         res.render('profile.ejs', {
+            user : req.user // get the user out of session and pass to template
+        });
+    });
+
+    app.get('/admin', isAdminIn, function(req, res) {
+      console.log(req.user);
+        res.render('adminProfile.ejs', {
             user : req.user // get the user out of session and pass to template
         });
     });
@@ -207,13 +232,37 @@ module.exports = function(app, passport) {
   });
 };
 
+
 // route middleware to make sure a user is logged in
+function handleLoggedIn(req, res, next){
+  var logged = wait.forMethod(User, "findById", req.user._id);
+
+  if (req.isAuthenticated() && logged)
+    return next();
+
+  // if they aren't redirect them to the home page
+  res.redirect('/');
+}
+
 function isLoggedIn(req, res, next) {
+  // if user is authenticated in the session, carry on
+  wait.launchFiber(handleLoggedIn,req, res, next);
 
-    // if user is authenticated in the session, carry on
-    if (req.isAuthenticated())
-        return next();
+}
 
-    // if they aren't redirect them to the home page
-    res.redirect('/');
+// route middleware to make sure a admin is logged in
+function handleAdminIn(req, res, next){
+
+  if (req.isAuthenticated()){
+    var logged = wait.forMethod(Admin, "findById", req.user._id);
+    if(logged)
+      return next();
+  }
+  // if they aren't redirect them to the home page
+  res.redirect('/adminlogin');
+}
+
+function isAdminIn(req, res, next) {
+  // if user is authenticated in the session, carry on
+  wait.launchFiber(handleAdminIn,req, res, next);
 }
