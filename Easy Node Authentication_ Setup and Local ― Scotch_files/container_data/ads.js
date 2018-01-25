@@ -1,1 +1,0 @@
-googletag.impl.pubads.callbackProxy1([{"/8691100/61307860":{"_type_":"html","_expandable_":false,"_afc_expandable_":false,"_html_":"","_snippet_":false,"_height_":90,"_width_":728,"_empty_":true,"_is_afc_":false,"_is_psa_":false,"_is_3pas_":false,"_pstok_":"","_qqid_":"CMKXiIOQktgCFc0ahwodDVMA6g"}}]);
