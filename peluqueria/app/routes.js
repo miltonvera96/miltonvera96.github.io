@@ -5,6 +5,7 @@ var bodyParser = require('body-parser');
 var User            = require('../app/models/user');
 var Admin            = require('../app/models/admin');
 var meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
+var mail  = require('../config/mail');
 
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
@@ -139,7 +140,7 @@ module.exports = function(app, passport) {
     });
   });
 
-  app.get('/crearReserva',isLoggedIn, urlencodedParser, function(req, res) {
+  app.post('/crearReserva',isLoggedIn, urlencodedParser, function(req, res) {
     var user = req.user;
     let respt = req.body;
     var query = 'Insert into cita (fechaC, hora, descripcion, estado, cliente, empleado, nombreCliente, cedulaCliente) \
@@ -150,7 +151,8 @@ module.exports = function(app, passport) {
           res.sendStatus(500);
         }
         else {
-          res.redirect('/crearReserva');
+          mail.sendPasswordReset('miltonvera96@gmail.com',respt.nombre ,respt.fecha,respt.hora, respt.descripcion, respt.empleado);
+          res.redirect('/reservaciones');
         }
     });
 
@@ -235,10 +237,13 @@ module.exports = function(app, passport) {
 
 // route middleware to make sure a user is logged in
 function handleLoggedIn(req, res, next){
-  var logged = wait.forMethod(User, "findById", req.user._id);
 
-  if (req.isAuthenticated() && logged)
-    return next();
+
+  if (req.isAuthenticated()){
+    var logged = wait.forMethod(User, "findById", req.user._id);
+    if(logged)
+      return next();
+  }
 
   // if they aren't redirect them to the home page
   res.redirect('/');
