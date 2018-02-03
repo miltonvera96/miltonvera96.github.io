@@ -83,15 +83,28 @@
 
         <div class="row">
 
+          <% if(user.local.role === 'Administrador'){%>
           <div class="col-md-3">
             <ul class="navbar-serv">
               <li class="submenu-title">Opciones</li>
               <li class="submenu-active"><a href="/admin"> Perfil</a></li>
-              <li><a href="/calendario"> Calendario Reservaciones </a></li>
-              <li><a href="/crearReserva"> </a></li>
-              <li><a href="/productos"> Productos </a></li>
+              <li><a href="/grafica"> Informacion </a></li>
+              <li><a href="/servicios"> Servicios </a></li>
+              <li><a href="/empleados"> Empleados </a></li>
+              <li><a href="/cuentas"> Cuentas </a></li>
             </ul>
           </div>
+          <%}else if(user.local.role === 'Moderador'){%>
+            <div class="col-md-3">
+              <ul class="navbar-serv">
+                <li class="submenu-title">Opciones</li>
+                <li class="submenu-active"><a href="/admin"> Perfil</a></li>
+                <li><a href="/citas"> Citas </a></li>
+                <li><a href="/servicios"> Servicios </a></li>
+              </ul>
+            </div>
+          <%}%>
+
 
             <!-- LOCAL INFORMATION -->
             <div class="col-sm-6">

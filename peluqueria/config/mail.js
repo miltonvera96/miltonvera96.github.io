@@ -15,14 +15,14 @@ var smtpConfig = {
 var transporter = nodemailer.createTransport(smtpConfig);
 
 
-var sendResetPasswordLink = transporter.templateSender(
+var enviarMailReserva = transporter.templateSender(
   new EmailTemplate('./email-template/'), {
     	from: 'divaspa8@gmail.com',
   });
 
-var sendPasswordReset = function (email, nombre, fecha, hora, descripcion, empleado) {
+var enviarMailReservaFunc = function (email, nombre, fecha, hora, descripcion, empleado) {
     // transporter.template
-    sendResetPasswordLink({
+    enviarMailReserva({
         to: email,
         subject: 'Reservacion de Servicio - DivaSpa.com'
     },{
@@ -41,5 +41,5 @@ var sendPasswordReset = function (email, nombre, fecha, hora, descripcion, emple
 };
 module.exports = {
   transporter : transporter,
-  sendPasswordReset: sendPasswordReset
+  enviarMailReservaFunc: enviarMailReservaFunc
 }

@@ -35,9 +35,11 @@ $(document).ready(function(){
         { data: 'fechaC' },
         { data: 'hora' },
         { data: 'descripcion' },
+        { data: 'servicio' },
         { data: 'estado' },
-        { data: 'empleado' },
+        { data: 'nombre' },
         { data: 'nombreCliente' },
+        { data: 'total' },
         { data: 'acciones' }
     ],
     oLanguage: {

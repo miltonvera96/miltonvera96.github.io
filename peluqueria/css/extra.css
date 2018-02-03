@@ -11,6 +11,11 @@ body{
 	border: solid 1px;
 }*/
 
+input.currency {
+    text-align: right;
+    padding-right: 15px;
+}
+
 .navbar-default {
     background-color: #fff;
      border-color: #fff;

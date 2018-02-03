@@ -50,11 +50,11 @@
     				              <ul class="dropdown-menu">
     				              	<li><a href="servicios.html"> Peluquería</a></li>
     				                <li><a href="masajes.html"> Masajes</a></li>
-    								<li><a href="../src/faciales.html"> Faciales</a></li>
-    								<li><a href="../src/manicure.html"> Manicure</a></li>
-    								<li><a href="../src/pedicure.html"> Pedicure</a></li>
-    								<li><a href="../src/paraHombres.html"> Para Hombres</a></li>
-    								<li><a href="../src/galeria.html"> Galería</a></li>
+            								<li><a href="../src/faciales.html"> Faciales</a></li>
+            								<li><a href="../src/manicure.html"> Manicure</a></li>
+            								<li><a href="../src/pedicure.html"> Pedicure</a></li>
+            								<li><a href="../src/paraHombres.html"> Para Hombres</a></li>
+            								<li><a href="../src/galeria.html"> Galería</a></li>
     				                <!-- <li role="separator" class="divider"></li>
     				                <li class="dropdown-header">Nav header</li>
     				                <li><a href="#">Separated link</a></li>
@@ -93,7 +93,7 @@
 
           <div class="col-md-9">
             <div id='reservaciones'>
-              <% if (data.length > 0) { %>
+              <% if (data > 0) { %>
                 <h2 class="headerText">Reservaciones Efectuadas</h2>
 
                 <form method="post" action="/buscarReservas">
@@ -151,35 +151,28 @@
                               <th> Fecha</th>
                               <th> Hora</th>
                               <th> Tipo</th>
+                              <th> Servicio</th>
                               <th> Estado</th>
                               <th> Empleado</th>
                               <th> Nombre Cliente</th>
+                              <th> Total $</th>
                               <th> Acciones</th>
                           </tr>
                       </thead>
                       <tbody id="cuerpoReservas">
 
-                        <!-- <% data.forEach(function(item, index){ %>
-                          <tr>
-                            <td><%= item.fechaC %></td>
-                            <td><%= item.hora %></td>
-                            <td><%= item.descripcion %></td>
-                            <td><%= item.estado %></td>
-                            <td><%= item.empleado %></td>
-                            <td>precio<td>
-                            <td><a href="reservaciones/editar/<%= item.idcita %>" class="btn btn-info editar" role="button">Editar</a> <a href="reservaciones/eliminar/<%= item.idcita %>" class="btn btn-danger eliminar" role="button">Eliminar</a></td>
-                            <td><a href="reservaciones/eliminar/<%= item.idcita %>" class="btn btn-danger eliminar" role="button">Eliminar</a></td>
-                          </tr>
-                        <% }); %> -->
                       </tbody>
                       <tfoot>
                         <tr>
-                            <th> Fecha</th>
-                            <th> Hora</th>
-                            <th> Tipo</th>
-                            <th> Estado</th>
-                            <th> Empleado</th>
-                            <th> nombreCliente</th>
+                          <th> Fecha</th>
+                          <th> Hora</th>
+                          <th> Tipo</th>
+                          <th> Servicio</th>
+                          <th> Estado</th>
+                          <th> Empleado</th>
+                          <th> Nombre Cliente</th>
+                          <th> Total $</th>
+                          <th> Acciones</th>
                         </tr>
                       </tfoot>
                   </table>

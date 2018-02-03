@@ -141,7 +141,7 @@ module.exports = function(passport) {
 
            // if the user is found but the password is wrong
            if (!user.validPassword(password))
-               return done(null, false, req.flash('loginMessage', 'Oops! Wrong password.')); // create the loginMessage and save it to session as flashdata
+               return done(null, false, req.flash('loginMessage', 'Ups! Constraseña incorrecta.')); // create the loginMessage and save it to session as flashdata
 
            // all is well, return successful user
            return done(null, user);
@@ -201,8 +201,7 @@ module.exports = function(passport) {
     },
     function(req, email, password, done) {
 
-        // asynchronous
-        // User.findOne wont fire unless data is sent back
+      // asynchronous
         process.nextTick(function() {
 
         // find a user whose email is the same as the forms email
@@ -223,7 +222,65 @@ module.exports = function(passport) {
 
                 // set the user's local credentials
                 newUser.local.email    = email;
+                newUser.local.role = 'Administrador';
                 newUser.local.password = newUser.generateHash(password);
+
+                //mongodb
+                newUser.save(function(err) {
+                    if (err)
+                        throw err;
+                    return done(null, newUser);
+                });
+
+
+            }
+
+        });
+
+        });
+
+    }));
+
+
+    // =========================================================================
+    // Moderador SIGNUP ============================================================
+    // =========================================================================
+    // we are using named strategies since we have one for login and one for signup
+    // by default, if there was no name, it would just be called 'local'
+
+    passport.use('moder-signup', new LocalStrategy({
+        // by default, local strategy uses username and password, we will override with email
+        usernameField : 'email',
+        passwordField : 'password',
+        passReqToCallback : true // allows us to pass back the entire request to the callback
+    },
+    function(req, email, password, done) {
+
+      // asynchronous
+        process.nextTick(function() {
+
+        // find a user whose email is the same as the forms email
+        // we are checking to see if the user trying to login already exists
+        Admin.findOne({ 'local.email' :  email }, function(err, user) {
+            // if there are any errors, return the error
+            if (err)
+                return done(err);
+
+            // check to see if theres already a user with that email
+            if (user) {
+                return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
+            } else {
+
+                // if there is no user with that email
+                // create the user
+                var newUser            = new Admin();
+
+                // set the user's local credentials
+                newUser.local.email    = email;
+                newUser.local.role = 'Moderador';
+                newUser.local.password = newUser.generateHash(password);
+
+                console.log("Nuevo usuario:" + newUser);
 
                 //mongodb
                 newUser.save(function(err) {
