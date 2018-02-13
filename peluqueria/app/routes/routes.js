@@ -118,7 +118,9 @@ module.exports = function(app, passport) {
       anio: anio
     }
     res.render('reservacionesEmpl.ejs', {
-      fecha: fecha
+      fecha: fecha,
+      dias: ['01', '02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20',
+            '21','22','23','24','25','26','27','28','29','30', '31']
     });
   });
 
@@ -127,13 +129,70 @@ module.exports = function(app, passport) {
     var date = new Date();
     var mes = date.getMonth() + 1;
     var anio = date.getFullYear();
-    var query = 'call cargarReservasEmpleados("' + user.local.email + '","' + anio + '","' + mes + '");';
+    var dia = date.getDate();
+    var query = 'call cargarReservasEmpleados("' + anio + '","' + mes + '","' + user.local.email + '","' + dia + '");';
     sbConnection.con.query(query, function (err, result, fields) {
         if (err) throw err;
         for (var i=0; i<result[0].length; i++){
-          result[0][i].acciones = '<a href="citas/confirmar/' + result[0][i].idcita + '" class="btn btn-info editar" role="button"><span class="glyphicon glyphicon-ok"></a> <a href="citas/cancelar/'+ result[0][i].idcita + '" class="btn btn-danger eliminar" role="button"><span class="glyphicon glyphicon-remove"></a>'
+          result[0][i].acciones = '<a href="citas/confirmar/' + result[0][i].idcita + '" class="btn btn-success confirmar" role="button"><span class="glyphicon glyphicon-ok"></a> <a href="citas/cancelar/'+ result[0][i].idcita + '" class="btn btn-danger cancelar" role="button"><span class="glyphicon glyphicon-remove"></a>'
         }
         res.send(result[0])
+    });
+  });
+
+  app.post('/citas/buscarReservasEmpl',isModerIn,  function(req, res) {
+    var user = req.user;
+    var mes = req.body.mes;
+    var anio = req.body.anio;
+    var dia = req.body.dia;
+    var query = 'call cargarReservasEmpleados("' + anio + '","' + mes + '","' + user.local.email + '","' + dia + '");';
+    sbConnection.con.query(query, function (err, result, fields) {
+        if (err) throw err;
+        for (var i=0; i<result[0].length; i++){
+          result[0][i].acciones = '<a href="citas/confirmar/' + result[0][i].idcita + '" class="btn btn-success confirmar" role="button"><span class="glyphicon glyphicon-ok"></a> <a href="citas/cancelar/'+ result[0][i].idcita + '" class="btn btn-danger cancelar" role="button"><span class="glyphicon glyphicon-remove"></a>'
+        }
+        console.log(result[0]);
+        res.send(result[0])
+    });
+  });
+
+  app.get('/calendarioCitas',isModerIn, function(req, res){
+    res.render('calendarioCitas');
+  });
+
+  app.get('/citasCalendario',isModerIn, function(req, res){
+    var query = 'SELECT nombreCliente as title, fechaC as `start`, fechaC as `end` FROM cita c, empleado e where c.empleado = e.cedula and e.email="' +req.user.local.email +  '";';
+    sbConnection.con.query(query, function (err, result, fields) {
+        if (err) throw err;
+        console.log(result);
+        res.send(result)
+    });
+  });
+
+  app.post('/citas/confirmar/:id',isModerIn, function(req, res){
+
+    var query = 'call confirmarCita('+ req.params.id +', "ASISTIDO" );';
+    sbConnection.con.query(query, function (err, result, fields) {
+        if (err) throw err;
+        res.redirect('/citas/cargarCitas');
+    });
+  });
+
+  app.post('/citas/cancelar/:id',isModerIn, function(req, res){
+
+    var query = 'call confirmarCita('+ req.params.id +', "CANCELADO" );';
+    sbConnection.con.query(query, function (err, result, fields) {
+        if (err) throw err;
+        res.redirect('/citas/cargarCitas');
+    });
+  });
+
+  app.post('/agrgServicio',isAdminIn,  function(req, res) {
+    var val = req.body;
+    var query = 'insert into servicios(nombre, descripcion, precio) values("' + val.nombre + '",' +  val.tipo + ',' + val.precio + ');';
+    sbConnection.con.query(query, function (err, result, fields) {
+        if (err) throw err;
+        res.redirect('/servicios');
     });
   });
 

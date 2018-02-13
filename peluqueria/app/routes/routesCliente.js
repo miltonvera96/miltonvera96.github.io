@@ -84,13 +84,7 @@ module.exports = function(app, passport) {
 
   // RENDERIZA PAGINA PARA CREAR UNA RESERVACION
   app.get('/crearReserva',isLoggedIn,  function(req, res) {
-    var query = 'Select * From empleado;'
-    sbConnection.con.query(query, function (err, result, fields) {
-        if (err) throw err;
-        res.render('crearReserva.ejs', {
-          data: result
-        });
-      });
+        res.render('crearReserva.ejs');
   });
 
   app.post('/crearReserva',isLoggedIn, urlencodedParser, function(req, res) {
@@ -146,19 +140,13 @@ module.exports = function(app, passport) {
       });
     });
 
-
-  function handleEdit(req, res){
-    var query1 = 'select * from cita where idcita = "' + req.params.id + '";'
-    var query2 = 'Select * From empleado;'
-    var empleados = wait.forMethod(sbConnection.con, "query", query2);
-    var cita = wait.forMethod(sbConnection.con, "query", query1);
-
-    console.log(cita[0]);
-    res.render('editarReserva.ejs', {
-      data: empleados,
-      cita: cita[0]
-    });
-  }
+function handleEdit(req, res){
+  var query1 = 'select * from cita where idcita = "' + req.params.id + '";';
+  var cita = wait.forMethod(sbConnection.con, "query", query1);
+  res.render('editarReserva.ejs', {
+    cita: cita[0]
+  });
+}
 
   // ENDPOINT PARA EDITAR UNA RESERVACION DADO UN ID DE LA RESERVACION
   app.post('/reservaciones/editar/:id', isLoggedIn, function(req, res){
@@ -194,6 +182,7 @@ module.exports = function(app, passport) {
     var empleados = wait.forMethod(sbConnection.con, "query", query2);
     var servicios = wait.forMethod(sbConnection.con, "query", query1);
 
+    console.log(servicios[0]);
     var datos = {
       servicios: servicios,
       empleados: empleados[0]

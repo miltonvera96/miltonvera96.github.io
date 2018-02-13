@@ -21,6 +21,9 @@ $(document).ready(function(){
         url: id
       }).done(function(response) {
         document.write(response);
+        console.log(document.cita);
+        // $("option[value=" +  + "]")
+        // window.location.reload();
       });
   });
 

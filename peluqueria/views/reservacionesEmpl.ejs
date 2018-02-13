@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <link rel="stylesheet" type="text/css" href="../css/dataTables.bootstrap.min.css">
   <% include ./parciales/head %>
+
+  <link rel="icon" type="image/png" href="../img/logo.png"/><link href='../fullcalendar/fullcalendar.min.css' rel='stylesheet' />
+  <link rel="stylesheet" type="text/css" href="../css/dataTables.bootstrap.min.css">
 
 </head>
   <body>
@@ -15,16 +17,14 @@
           <div class="col-md-3">
             <ul class="navbar-serv">
               <li class="submenu-title">Opciones</li>
-              <li ><a href="/profile"> Perfil</a></li>
-              <li class="submenu-active"><a href="/reservaciones"> Reservaciones</a></li>
-              <li><a href="/crearReserva"> Crear Reservacion </a></li>
-              <li><a href="/datos"> Datos de la Cuenta </a></li>
+              <li ><a href="/admin"> Perfil</a></li>
+              <li class="submenu-active"><a href="/citas"> Citas</a></li>
+              <li><a href="/calendarioCitas"> Calendario </a></li>
             </ul>
           </div>
 
           <div class="col-md-9">
             <div id='reservaciones'>
-              <% if (data > 0) { %>
                 <h2 class="headerText">Reservaciones Efectuadas</h2>
 
                 <form method="post" action="/buscarReservas">
@@ -41,7 +41,7 @@
                     <div class="form-group col-md-2">
                       <label for="mes"> Mes </label>
                       <select name="mes" class="form-control">
-                          <option value="todos">Todos</option>
+                          <option value="00">Todos</option>
                           <option value="01">Enero</option>
                           <option value="02">Febrero</option>
                           <option value="03">Marzo</option>
@@ -56,22 +56,19 @@
                           <option value="12">Diciembre</option>
                       </select>
                     </div>
-                  </div>
-                  <div class="form-group col-md-6">
-                      <label class="control-label" for="tipo"> Tipo </label>
-                      <select name="tipo" class="form-control">
-                        <option value="todos">Todos</option>
-                          <option value="Peluquería">Peluquería</option>
-                          <option value="Masajes">Masajes</option>
-                          <option value="Faciales">Faciales</option>
-                          <option value="Manicure">Manicure</option>
-                          <option value="Pedicure">Pedicure</option>
-                          <option value="Hombres">Para Hombres</option>
+                    <div class="form-group col-md-2">
+                      <label for="anio"> Día </label>
+                      <select name="dia" class="form-control">
+                        <option value="00">Todos</option>
+                        <% dias.forEach(function(item){%>
+                          <option value="<%= item%>"><%= item %></option>
+                        <%});%>
                       </select>
-                  </div>
-                  <div class="form-group col-md-2">
-                    <label class="control-label" for=""> </label>
-                    <button type="submit" class="btn btn-primary">Buscar</button>
+                    </div>
+                    <div class="form-group col-md-2">
+                      <label class="control-label" for=""> </label>
+                      <button type="submit" class="btn btn-primary">Buscar</button>
+                    </div>
                   </div>
                 </form>
 
@@ -79,14 +76,12 @@
                       <caption>Lista de reservas de <%= fecha.mes%> del <%= fecha.anio%></caption>
                       <thead class="thead-light">
                           <tr>
-                              <th> Fecha</th>
                               <th> Hora</th>
                               <th> Tipo</th>
                               <th> Servicio</th>
-                              <th> Estado</th>
-                              <th> Empleado</th>
+                              <th> Cedula Cliente</th>
                               <th> Nombre Cliente</th>
-                              <th> Total $</th>
+                              <th> Estado</th>
                               <th> Acciones</th>
                           </tr>
                       </thead>
@@ -95,21 +90,16 @@
                       </tbody>
                       <tfoot>
                         <tr>
-                          <th> Fecha</th>
                           <th> Hora</th>
                           <th> Tipo</th>
                           <th> Servicio</th>
-                          <th> Estado</th>
-                          <th> Empleado</th>
+                          <th> Cedula Cliente</th>
                           <th> Nombre Cliente</th>
-                          <th> Total $</th>
+                          <th> Estado</th>
                           <th> Acciones</th>
                         </tr>
                       </tfoot>
                   </table>
-              <% } else{ %>
-                <h2>No Existen Reservaciones Efectuadas</h2>
-              <% } %>
           </div>
           </div>
         </div>
@@ -121,6 +111,6 @@
           <script src="../js/jquery.dataTables.js"></script>
           <script src="../js/dataTables.bootstrap.min.js"></script>
           <script src="../js/bootstrap.min.js"></script>
-          <script src="../js/calendario.js"></script>
+          <script src="../js/reservacionesEmpl.js"></script>
       </body>
 </html>

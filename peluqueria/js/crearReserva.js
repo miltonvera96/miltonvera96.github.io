@@ -1,8 +1,6 @@
-$(document).ready(function(){
-
+//$(document).ready(function(){
 
   var descripcion = $('select[name="descripcion"]');
-
   var valor = descripcion.val();
   $.ajax({
     type: 'post',
@@ -50,9 +48,8 @@ $(document).ready(function(){
       url: '/precioServicio',
       data: { servicio : valor }
     }).done(function(data){
-      console.log(data);
       $('input[name="total"]').attr('value', data[0].precio);
 
     });
   });
-});
+//});
