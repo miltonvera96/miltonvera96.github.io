@@ -1,8 +1,4 @@
-
-
 var app = angular.module('todoController', []);
-
-	// inject the Todo service factory into our controller
 app.controller('mainController', ['$scope','$http','Todos', function($scope, $http, Todos) {
 		$scope.formData = {};
 		$scope.tab = 1;
@@ -91,14 +87,7 @@ app.controller('mainController', ['$scope','$http','Todos', function($scope, $ht
                 ],
                 label: 'Dataset 1'
             }],
-            labels: [
-                "Peluqueria",
-                "Masajes",
-                "Faciales",
-                "Para Hombres",
-                "Manicure",
-								"Pedicure"
-            ]
+            labels: []
         },
         options: {
             responsive: true
@@ -134,7 +123,8 @@ app.controller('mainController', ['$scope','$http','Todos', function($scope, $ht
 				Todos.getDatosServicios()
 					.success(function(data) {
 						$scope.loading = false;
-						$scope.configPie.data.datasets[0].data = data;
+						$scope.configPie.data.datasets[0].data = data.numeros;
+						$scope.configPie.data.labels = data.tipos;
 						var pieChart = new Chart(canvas,$scope.configPie);
 					});
 			}

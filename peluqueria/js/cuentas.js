@@ -34,7 +34,6 @@ $(document).ready(function(){
         { data: 'local.email' },
         { data: 'local.password' },
         { data: 'local.role' },
-        { data: 'accion' }
     ],
     oLanguage: {
           sProcessing:     "Procesando...",

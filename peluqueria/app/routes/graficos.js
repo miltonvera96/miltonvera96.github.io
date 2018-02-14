@@ -42,8 +42,25 @@ router.get('/api/ventas', function (req, res) {
 
 
 router.get('/api/servicios', function (req, res) {
-    // use mongoose to get all todos in the database
-    res.send([1, 10, 5, 2, 20, 30]);
+
+  var numeros = [];
+  var tipos = [];
+  var query = 'call ventasportipo(2018);';
+  sbConnection.con.query(query, function (err, result, fields) {
+      if (err) throw err;
+      result = result[0];
+      console.log(result);
+      result.forEach(function(item, index){
+        numeros.push(parseFloat(item.cant));
+        tipos.push(item.nombre);
+      });
+      data = {
+        numeros : numeros,
+        tipos : tipos
+      }
+      res.send(data);
+
+  });
 });
 
 module.exports = router;
