@@ -246,9 +246,7 @@ padding: 5px;
       margin-bottom:0;
     }
 
-    .column2{
-        width: 50%;
-    }
+    
   }
   
   .footer-dark .item.text p {
@@ -264,6 +262,10 @@ padding: 5px;
     .footer-dark .item.social {
       text-align:center;
       margin-top:20px;
+    }
+
+    .column2{
+        width: 50%;
     }
   }
   
