@@ -89,7 +89,15 @@ html, body {
     float: right;
     position: absolute;
     right: 20px;
-    top: 20px;
+    top: 0px;
+}
+
+#brandhome{
+    padding-top: 50px;
+    padding-right: 50px;
+    padding-left: 50px;
+    font-size: 1.5em;
+    
 }
 
 #listworks{
@@ -105,12 +113,89 @@ html, body {
     font-size: 40px;
 }
 
-.parent {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(5, 1fr);
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
-    }
+.workdescription{
+    padding-top: 10%;
+    padding-right: 50px;
+    padding-left: 50px;
+    padding-bottom: 5%;
+}
+
+.workdescription h2, .workdescription #role{
+    color: dimgray;
+}
+
+.appdescription{
+    background-color: rgb(56, 56, 56);
+    padding-top: 5%;
+    padding-right: 50px;
+    padding-left: 50px;
+    padding-bottom: 5%;
+    position: relative;
+
+    /* height: 1000px; */
+}
+
+.itemdescription h2{
+    color: white;
+}
+
+.itemdescription p{
+    color: white;
+    opacity: 0.7;
+    width: 50%;
+
+}
+
+.column {
+float: left;
+width: 50%;
+padding: 5px;
+}
+
+.column2 {
+    float: left;
+    width: 24%;
+    padding: 5px;
+}
+
+.appdescription::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.appdescription2{
+    background-image: linear-gradient(to bottom right, rgb(233, 252, 255), rgb(235, 217, 251));
+    padding-top: 5%;
+    padding-right: 50px;
+    padding-left: 50px;
+    padding-bottom: 5%;
+    position: relative;
+
+    /* height: 1000px; */
+}
+
+.itemdescription2{
+    text-align: right;
+    align-items: right;
+}
+
+.itemdescription2 h2{
+    color: black;
+}
+
+.itemdescription2 p{
+    color: black;
+    opacity: 0.7;
+    float: right;
+
+
+}
+
+.appdescription2::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
     
-.div1 { grid-area: 1 / 1 / 2 / 2; }
