@@ -42,10 +42,10 @@ html, body {
     margin-right: auto;
     z-index: 1;
     position: absolute;
-    -webkit-transition: 1s ease;
-    -moz-transition: 1s ease;
-    -o-transition: 1s ease;
-    -ms-transition: 1s ease;
+    -webkit-transition: .5s ease-in;
+    -moz-transition: 0.5s ease-in;
+    -o-transition: .5s ease-in;
+    -ms-transition: .5s ease-in;
   }
 
   #circle.show{
@@ -62,10 +62,10 @@ html, body {
     right: 0;
     z-index: 1;
     position: absolute;
-    -webkit-transition: 1s ease-in;
-    -moz-transition: 1s ease-in;
-    -o-transition: 1s ease-in;
-    -ms-transition: 1s ease-in;
+    -webkit-transition: .5s ease-in;
+    -moz-transition: 0.5s ease-in;
+    -o-transition: .5s ease-in;
+    -ms-transition: .5s ease-in;
   }
 
   #circle2.show{
