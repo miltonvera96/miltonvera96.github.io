@@ -245,6 +245,10 @@ padding: 5px;
     .footer-dark .item.text {
       margin-bottom:0;
     }
+
+    .column2{
+        width: 50%;
+    }
   }
   
   .footer-dark .item.text p {
