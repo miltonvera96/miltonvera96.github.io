@@ -1,0 +1,37 @@
+.contactescription{
+    padding-top: 12%;
+    padding-right: 50px;
+    padding-left: 50px;
+    padding-bottom: 5%;
+    
+    -webkit-transition: 1s ease;
+    -moz-transition: 1s ease;
+    -o-transition: 1s ease;
+    -ms-transition: 1s ease;
+}
+
+.contactescription.show{
+    padding-top: 10%;
+ }
+
+
+ .contactescription #title{
+    font: 5em sans-serif;
+    color: dimgray;
+ }
+
+ .contactescription #mail{
+    font: 2em sans-serif;
+    color: black;
+ }
+
+ .itemsfind a{
+    color: rgb(156, 156, 156);
+    text-decoration: none;
+    font: 0.7em sans-serif;
+ }
+
+
+.itemsfindk a:hover {
+    text-decoration: underline;
+}

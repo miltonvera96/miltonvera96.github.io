@@ -80,10 +80,6 @@ html, body {
     font-size: 1.5em;
 }
 
-.nav-link:hover #leftside{
-    transform: scale(1.5);
-}
-
 .work-link{
     color: #000;
     font-style: normal;
@@ -136,30 +132,3 @@ html, body {
     font-size: 40px;
 }  
 
-.contactescription{
-    padding-top: 10%;
-    padding-right: 50px;
-    padding-left: 50px;
-    padding-bottom: 5%;
-}
-
- .contactescription #title{
-    font: 5em sans-serif;
-    color: dimgray;
- }
-
- .contactescription #mail{
-    font: 2em sans-serif;
-    color: black;
- }
-
- .itemsfind a{
-    color: rgb(156, 156, 156);
-    text-decoration: none;
-    font: 0.7em sans-serif;
- }
-
-
-.itemsfindk a:hover {
-    text-decoration: underline;
-}
