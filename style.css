@@ -10,7 +10,6 @@ html, body {
 
 
 #leftside{
-    background-color: black;
     height: 100%;
     width: 50%;
     display: flex;
@@ -32,6 +31,17 @@ html, body {
     float: left;
 }
 
+.imageback {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+}
+
+.imageback img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 
 #circle {
     width: 50%;
@@ -75,7 +85,7 @@ html, body {
     border-radius: 100px 0 0 100px; }
 
 .nav-link{
-    color: #000;
+    color: black;
     font-size: 1.5em;
 }
 
@@ -144,6 +154,10 @@ html, body {
 
     .nav-link{
         color: white;
+    }
+
+    .imageback {
+        width: 100%;
     }
 
   }

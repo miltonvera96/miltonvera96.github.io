@@ -20,7 +20,7 @@
   object-fit: cover;
 }
 
-.boxes {
+/* .boxes {
   height: auto;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -43,7 +43,7 @@
 }
 .box-card :nth-child(1) { transform: translateY(15%);}
 .box-card:nth-child(2) { transform: translateY(30%);}
-.box-card:nth-child(3) { transform: translateY(45%);}
+.box-card:nth-child(3) { transform: translateY(45%);} */
 
 .companyname{
   position: absolute;
@@ -54,13 +54,13 @@
 }
 
 .companyname .title{
-  font-size: 2em;
+  font-size: 3em;
   font-weight: 600;
   text-align: center;
 }
 
 .companyname .subtitle{
-  font-size: 1.5em;
+  font-size: 2em;
   color: rgb(97, 97, 97);
   font-weight: 400;
   text-align: center;
@@ -242,6 +242,12 @@ padding: 5px;
     font-size: 1.5em;
 
 
+}
+
+.box-card img{
+  object-fit: cover;
+ height: 100%;
+ width: 100%;
 }
 
 .appdescription2::after {
