@@ -197,7 +197,7 @@ padding: 5px;
     transition: transform 0.4s linear;
 }
 
-img{
+.img-container-before img, .img-container-after img{
     width: 20vw;
     height: 85vh;
     object-fit: cover;
