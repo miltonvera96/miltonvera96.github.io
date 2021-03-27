@@ -317,19 +317,35 @@ img{
       text-align:center;
       margin-top:20px;
     }
-
-    .column2{
-        width: 50%;
-    }
   }
 
   @media (max-width:1100px) {
 
-    .column2{
-        width: 50%;
+
+    .column{
+      width: 100%;
     }
+
+    .itemdescription p{
+      width: 100%;  
+    }
+
+    .column2 {
+      width: 65vw;
+      height: 90vh;
+      margin-top: 2em;
+  }
+  
+  .img-container-before, .img-container-after{
+    width: 65vw;
+    height: 90vh;
   }
 
+  .img-container-before img, .img-container-after img{
+    width: 65vw;
+    height: 90vh;
+  }
+}
 
   .footer-dark .item.social > a {
     font-size:20px;
