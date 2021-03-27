@@ -29,7 +29,6 @@ html, body {
     width: 50%;
     display: flex;
     align-items: center;
-    justify-content: right;
     float: right;
 }
 
@@ -132,3 +131,16 @@ html, body {
     font-size: 40px;
 }  
 
+@media (max-width:1200px) {
+    #leftside {
+      width: 100%;
+    }
+
+    #righttside {
+        width: 100%;
+    }
+
+    .nav-link{
+        color: white;
+    }
+  }
