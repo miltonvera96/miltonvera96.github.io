@@ -8,8 +8,33 @@ html, body {
     height: 100%;
 }
 
+code {
+    color: white;
+    background-color: #ffffff23;
+    padding: 2px;
+    font-size: 105%;
+  }
+
+.textInsideTag{
+    font-size: 2.5em;
+}
+
+.textInsideTag2{
+    color: rgba(255, 255, 255, 0.815);
+    font-size: 1.7em;
+}
+
+.textInsideTag3{
+    color: rgba(255, 255, 255, 0.616);
+    font-size: 1.2em;
+}
+
+.tagstyle{
+    color: rgb(164, 193, 231);
+}
 
 #leftside{
+    background-color: black;
     height: 100%;
     width: 50%;
     display: flex;
@@ -106,6 +131,8 @@ html, body {
     z-index: 2;
     position: absolute;
     bottom: 50px;
+    padding-left: 4em;
+    padding-right: 4em;
 }
 
 
